@@ -57,7 +57,17 @@
     <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="assets/js/demo/datatables-demo.js"></script>
+    <script src="assets/js/demo/datatables-demo.js"></script>\
+
+<script>
+    $(document).ready(function() {
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove(); 
+            });
+        }, 4000);
+    });
+</script>
 </body>
 
 </html>
