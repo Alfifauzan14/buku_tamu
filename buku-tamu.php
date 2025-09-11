@@ -25,70 +25,70 @@ include_once('templates/header.php');
         }
       }
       ?>
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <button type="button" class="btn btn-primary btn-icon-split"
-                            data-toggle="modal" data-target="#tambahModal">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-plus"></i>
-                                </span>
-                                <span class="text">Tambah Data</span>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>NO</th>
-                                            <th>Tanggal</th>
-                                            <th>Nama Tamu</th>
-                                            <th>Alamat</th>
-                                            <th>No. Telp/HP</th>
-                                            <th>Bertemu Dengan</th>
-                                            <th>Kepentingan</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Tanggal</th>
-                                            <th>Nama Tamu</th>
-                                            <th>Alamat</th>
-                                            <th>No. Telp/HP</th>
-                                            <th>Bertemu Dengan</th>
-                                            <th>Kepentingan</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                      <?php
-                                      $no = 1;
-                                      $buku_tamu = query("SELECT * FROM buku_tamu");
-                                      foreach($buku_tamu as $tamu) :
-                                      ?>
-                                        <tr>
-                                          <td><?= $no++;?></td>
-                                          <td><?= $tamu['tanggal'];?></td>
-                                          <td><?= $tamu['nama_tamu'];?></td>
-                                          <td><?= $tamu['alamat'];?></td>
-                                          <td><?= $tamu['no_hp'];?></td>
-                                          <td><?= $tamu['bertamu'];?></td>
-                                          <td><?= $tamu['kepentingan'];?></td>
-                                          <td>
-                                            <button class="btn btn-success" type="button">Ubah</button>
-                                            <button class="btn btn-danger" type="button">Hapus</button>
-                                          </td>
-                                        </tr>
-                                      <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-</div>
+      <!-- DataTales Example -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <button type="button" class="btn btn-primary btn-icon-split"
+            data-toggle="modal" data-target="#tambahModal">
+            <span class="icon text-white-50">
+              <i class="fas fa-plus"></i>
+            </span>
+            <span class="text">Tambah Data</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>NO</th>
+                  <th>Tanggal</th>
+                  <th>Nama Tamu</th>
+                  <th>Alamat</th>
+                  <th>No. Telp/HP</th>
+                  <th>Bertemu Dengan</th>
+                  <th>Kepentingan</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>Name</th>
+                  <th>Tanggal</th>
+                  <th>Nama Tamu</th>
+                  <th>Alamat</th>
+                  <th>No. Telp/HP</th>
+                  <th>Bertemu Dengan</th>
+                  <th>Kepentingan</th>
+                  <th>Aksi</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                <?php
+                $no = 1;
+                $buku_tamu = query("SELECT * FROM buku_tamu");
+                foreach($buku_tamu as $tamu) :
+                ?>
+                  <tr>
+                    <td><?= $no++;?></td>
+                    <td><?= $tamu['tanggal'];?></td>
+                    <td><?= $tamu['nama_tamu'];?></td>
+                    <td><?= $tamu['alamat'];?></td>
+                    <td><?= $tamu['no_hp'];?></td>
+                    <td><?= $tamu['bertamu'];?></td>
+                    <td><?= $tamu['kepentingan'];?></td>
+                    <td>
+                      <a class="btn btn-success" href="edit-tamu.php?id=<?= $tamu['id_tamu']?>">Ubah</a>
+                      <button class="btn btn-danger" type="button">Hapus</button>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div>
 <?php
   // Mengambil data barang dari tabel dengan kode terbesar
   $query = mysqli_query($koneksi, "SELECT max(id_tamu) as kodeTerbesar FROM buku_tamu");
