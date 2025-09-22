@@ -5,108 +5,108 @@ include_once('templates/header.php');
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Buku Tamu</h1>
+  <!-- Page Heading -->
+  <h1 class="h3 mb-4 text-gray-800">Buku Tamu</h1>
+  <?php
+  // cek apakah tombol simpan sudah diklik atau blum
+  if (isset($_POST['simpan'])) {
+    if (tambah_tamu($_POST) > 0) {
+  ?>
+      <div class="alert alert-success" role="alert">
+        Data Berhasil Ditambahkan!
+      </div>
     <?php
-    // cek apakah tombol simpan sudah diklik atau blum
-    if( isset($_POST['simpan']) ) {
-      if (tambah_tamu($_POST) > 0 ) {
+    } else {
     ?>
-        <div class="alert alert-success" role="alert">
-          Data Berhasil Ditambahkan!
-        </div>
-      <?php
-      } else {
-      ?>
-        <div class="alert alert-danger" role="alert">
-          Data Gagal Ditambahkan!
-        </div>
-     <?php
-        }
-      }
-      ?>
-      <!-- DataTales Example -->
-      <div class="card shadow mb-4">
-        <div class="card-header py-3">
-          <button type="button" class="btn btn-primary btn-icon-split"
-            data-toggle="modal" data-target="#tambahModal">
-            <span class="icon text-white-50">
-              <i class="fas fa-plus"></i>
-            </span>
-            <span class="text">Tambah Data</span>
-          </button>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                  <th>NO</th>
-                  <th>Tanggal</th>
-                  <th>Nama Tamu</th>
-                  <th>Alamat</th>
-                  <th>No. Telp/HP</th>
-                  <th>Bertemu Dengan</th>
-                  <th>Kepentingan</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th>Name</th>
-                  <th>Tanggal</th>
-                  <th>Nama Tamu</th>
-                  <th>Alamat</th>
-                  <th>No. Telp/HP</th>
-                  <th>Bertemu Dengan</th>
-                  <th>Kepentingan</th>
-                  <th>Aksi</th>
-                </tr>
-              </tfoot>
-              <tbody>
-                <?php
-                $no = 1;
-                $buku_tamu = query("SELECT * FROM buku_tamu");
-                foreach($buku_tamu as $tamu) :
-                ?>
-                  <tr>
-                    <td><?= $no++;?></td>
-                    <td><?= $tamu['tanggal'];?></td>
-                    <td><?= $tamu['nama_tamu'];?></td>
-                    <td><?= $tamu['alamat'];?></td>
-                    <td><?= $tamu['no_hp'];?></td>
-                    <td><?= $tamu['bertamu'];?></td>
-                    <td><?= $tamu['kepentingan'];?></td>
-                    <td>
-                      <a class="btn btn-success" href="edit-tamu.php?id=<?= $tamu['id_tamu']?>">Ubah</a>
-                      <a onclick="confirm('Apakah anda yakin menghapus data ini?')" class="btn btn-danger" href="hapus-tamu.php?id=<?= $tamu['id_tamu']?>">Hapus</a>
-                    </td>
-                  </tr>
-                <?php endforeach; ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div class="alert alert-danger" role="alert">
+        Data Gagal Ditambahkan!
       </div>
+  <?php
+    }
+  }
+  ?>
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <button type="button" class="btn btn-primary btn-icon-split"
+        data-toggle="modal" data-target="#tambahModal">
+        <span class="icon text-white-50">
+          <i class="fas fa-plus"></i>
+        </span>
+        <span class="text">Tambah Data</span>
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>NO</th>
+              <th>Tanggal</th>
+              <th>Nama Tamu</th>
+              <th>Alamat</th>
+              <th>No. Telp/HP</th>
+              <th>Bertemu Dengan</th>
+              <th>Kepentingan</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Name</th>
+              <th>Tanggal</th>
+              <th>Nama Tamu</th>
+              <th>Alamat</th>
+              <th>No. Telp/HP</th>
+              <th>Bertemu Dengan</th>
+              <th>Kepentingan</th>
+              <th>Aksi</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <?php
+            $no = 1;
+            $buku_tamu = query("SELECT * FROM buku_tamu");
+            foreach ($buku_tamu as $tamu) :
+            ?>
+              <tr>
+                <td><?= $no++; ?></td>
+                <td><?= $tamu['tanggal']; ?></td>
+                <td><?= $tamu['nama_tamu']; ?></td>
+                <td><?= $tamu['alamat']; ?></td>
+                <td><?= $tamu['no_hp']; ?></td>
+                <td><?= $tamu['bertamu']; ?></td>
+                <td><?= $tamu['kepentingan']; ?></td>
+                <td>
+                  <a class="btn btn-success" href="edit-tamu.php?id=<?= $tamu['id_tamu'] ?>">Ubah</a>
+                  <a onclick="confirm('Apakah anda yakin menghapus data ini?')" class="btn btn-danger" href="hapus-tamu.php?id=<?= $tamu['id_tamu'] ?>">Hapus</a>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
       </div>
+    </div>
+  </div>
+</div>
 <?php
-  // Mengambil data barang dari tabel dengan kode terbesar
-  $query = mysqli_query($koneksi, "SELECT max(id_tamu) as kodeTerbesar FROM buku_tamu");
-  $data = mysqli_fetch_array($query);
-  $kodeTamu = $data['kodeTerbesar'];
+// Mengambil data barang dari tabel dengan kode terbesar
+$query = mysqli_query($koneksi, "SELECT max(id_tamu) as kodeTerbesar FROM buku_tamu");
+$data = mysqli_fetch_array($query);
+$kodeTamu = $data['kodeTerbesar'];
 
-  // Mengambil angka dari kode barang terbesar, menggunakan fungsi substr dan diubah ke integer dengan (int)
-  $urutan = (int) substr($kodeTamu, 2, 3);
+// Mengambil angka dari kode barang terbesar, menggunakan fungsi substr dan diubah ke integer dengan (int)
+$urutan = (int) substr($kodeTamu, 2, 3);
 
-  // nomor yang diambil akan ditambah 1 untuk menentukan nomor urut berikutnya
-  $urutan++;
+// nomor yang diambil akan ditambah 1 untuk menentukan nomor urut berikutnya
+$urutan++;
 
-  // Membuat kode barang baru
-  // string sprintf("%03s", $urutan); berfungsi untuk membuat string menjadi 3 karakter
+// Membuat kode barang baru
+// string sprintf("%03s", $urutan); berfungsi untuk membuat string menjadi 3 karakter
 
-  //angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya zt
-  $huruf = "zt";
-  $kodeTamu = $huruf . sprintf("%03s", $urutan);
+//angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya zt
+$huruf = "zt";
+$kodeTamu = $huruf . sprintf("%03s", $urutan);
 ?>
 <!-- Modal -->
 <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
