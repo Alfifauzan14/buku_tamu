@@ -1,4 +1,12 @@
 <?php
+//memulai session
+session_start();
+
+//cek bila ada user yang sudah login akan redirect ke halaman dashboard
+if(isset($_SESSION['login'])) {
+  header('Location: index.php');
+}
+
 require 'koneksi.php';
 if (isset($_POST['login'])) {
   $username = $_POST['username'];
@@ -21,6 +29,11 @@ if (isset($_POST['login'])) {
   }
 
   $error = true;
+
+  if (password_verify($password, $row['password'])) {
+    $_SESSION['login'] = true;
+    $_SESSION['username'] = $username;
+  }
 }
 ?>
 <!DOCTYPE html>

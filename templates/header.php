@@ -1,3 +1,13 @@
+<?php
+//memulai session
+session_start();
+
+//cek bila tidak ada user yang login maka akan di redict ke halaman login
+if(isset($_SESSION['login'])) {
+    header('location: login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +45,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-school"></i>
                 </div>
@@ -72,6 +82,18 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
+
+            <?php
+            // cek apabila ada user login maka tampilkan logout
+            if(isset($_SESSION['login'])) :
+            ?>
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php">
+                    <i class="fas fa-fw fa-power-off"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+            <?php endif;?>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
