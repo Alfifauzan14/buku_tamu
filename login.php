@@ -3,7 +3,7 @@
 session_start();
 
 //cek bila ada user yang sudah login akan redirect ke halaman dashboard
-if(isset($_SESSION['login'])) {
+if (isset($_SESSION['login'])) {
   header('Location: index.php');
 }
 
@@ -21,7 +21,9 @@ if (isset($_POST['login'])) {
     $row = mysqli_fetch_assoc($result);
 
     if (password_verify($password, $row['password'])) {
-
+      $_SESSION['login'] = true;
+      $_SESSION['username'] = $username;
+      $_SESSION['role'] = $row['user_role'];
       // login berhasil
       header("Location: index.php");
       exit;
@@ -29,12 +31,8 @@ if (isset($_POST['login'])) {
   }
 
   $error = true;
-
-  if (password_verify($password, $row['password'])) {
-    $_SESSION['login'] = true;
-    $_SESSION['username'] = $username;
-  }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

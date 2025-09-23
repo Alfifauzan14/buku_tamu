@@ -1,6 +1,7 @@
 <?php
 include_once('templates/header.php');
 ?>
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
